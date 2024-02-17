@@ -16,7 +16,7 @@ async function insertUser(username: string, password: string, email: string) {
     
 }
 
-insertUser("abhimanyu","xyz123","ab@iitk.ac.in")
+// insertUser("abhimanyu","xyz123","ab@iitk.ac.in")
 
 async function getUser(username: string){
     const user = await prisma.users.findFirst({
@@ -28,3 +28,17 @@ async function getUser(username: string){
 }
 
 getUser("admin");
+
+async function createTodo(userId: number, title: string, description: string){
+    const todo = await prisma.todo.create({
+        data:{
+            title,
+            description,
+            userId
+        }
+    });
+    console.log(todo);
+}
+
+// getUser(1, "goto")
+createTodo(75,"goto gym","go to gym after CS771");

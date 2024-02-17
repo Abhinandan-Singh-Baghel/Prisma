@@ -23,7 +23,7 @@ function insertUser(username, password, email) {
         console.log(res);
     });
 }
-insertUser("abhimanyu", "xyz123", "ab@iitk.ac.in");
+// insertUser("abhimanyu","xyz123","ab@iitk.ac.in")
 function getUser(username) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = yield prisma.users.findFirst({
@@ -35,3 +35,17 @@ function getUser(username) {
     });
 }
 getUser("admin");
+function createTodo(userId, title, description) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const todo = yield prisma.todo.create({
+            data: {
+                title,
+                description,
+                userId
+            }
+        });
+        console.log(todo);
+    });
+}
+// getUser(1, "goto")
+createTodo(75, "goto gym", "go to gym after CS771");
