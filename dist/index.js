@@ -34,7 +34,7 @@ function getUser(username) {
         console.log(user);
     });
 }
-getUser("admin");
+// getUser("admin");
 function createTodo(userId, title, description) {
     return __awaiter(this, void 0, void 0, function* () {
         const todo = yield prisma.todo.create({
@@ -48,4 +48,15 @@ function createTodo(userId, title, description) {
     });
 }
 // getUser(1, "goto")
-createTodo(75, "goto gym", "go to gym after CS771");
+// createTodo(75,"goto gym","go to gym after CS771");
+function getTodos(userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const todos = yield prisma.todo.findMany({
+            where: {
+                userId: userId,
+            },
+        });
+        console.log(todos);
+    });
+}
+getTodos(75);

@@ -7,11 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
+model User {
   id         Int       @id @default(autoincrement())
   username   String    @unique @db.VarChar(50)
   email      String    @unique @db.VarChar(255)
   password   String    @db.VarChar(255)
+  firstName  String
+  lastName   String
+  todos      Todo[]
   created_at DateTime? @default(now()) @db.Timestamptz(6)
 }
 
@@ -22,4 +25,5 @@ model Todo {
   description  String
   done        Boolean @default(false)
   userId      Int
+  user        User    @relation(fields: [userId], references: [id])      
 }

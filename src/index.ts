@@ -27,7 +27,7 @@ async function getUser(username: string){
     console.log(user);
 }
 
-getUser("admin");
+// getUser("admin");
 
 async function createTodo(userId: number, title: string, description: string){
     const todo = await prisma.todo.create({
@@ -41,4 +41,17 @@ async function createTodo(userId: number, title: string, description: string){
 }
 
 // getUser(1, "goto")
-createTodo(75,"goto gym","go to gym after CS771");
+// createTodo(75,"goto gym","go to gym after CS771");
+
+
+async function getTodos(userId: number, ){
+    const todos = await prisma.todo.findMany({
+        where: {
+            userId: userId,
+
+        },
+    });
+    console.log(todos);
+}
+
+getTodos(75);
